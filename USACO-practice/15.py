@@ -1,6 +1,5 @@
-array = []
-N = int(input())
-for i in range(N):
-    array[i] = map(int,input().split())
+N, K = map(int,input().split())
+arr = [list(map(int,input().split())) for _ in range(N)]
 
-print(array)
+print(arr)
+
