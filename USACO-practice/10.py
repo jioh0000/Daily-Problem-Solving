@@ -22,7 +22,7 @@ for i in range(N):
        
     globals()[a[i][0]] = globals()[a[i][7]] - chaE
 
-print(Mildred)
-print(Gretta)
-print(Elsie)
-print(Paulina)
+#print(Mildred)
+#print(Gretta)
+#print(Elsie)
+#print(Paulina)
