@@ -1,1 +1,1 @@
-N, K = map(int,input().split())
+N, K = 1, 3
