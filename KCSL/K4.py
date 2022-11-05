@@ -9,9 +9,6 @@ for i in range(-distance, distance+1, 1):
     if column+i>=0 and column+i<=4:
         board[row][column+i] = 1
 
-print(board)
-
-
 for i in range(1,min(row, distance)+1):
     if column + i <= 4:
         board[row-i][column+i] = 1
