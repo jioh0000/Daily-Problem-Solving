@@ -49,6 +49,7 @@ data = (
 )
 
 cursor.executemany(INSERT_SQL, data)
+# 데이터베이스에 반영 시키기
 conn.commit()
 
 cursor.execute('SELECT * FROM Lol;')
@@ -56,6 +57,30 @@ item_list = cursor.fetchall()
 for i in item_list:
     print(i)
 
+# Table 삭제하기
+# conn.execute('DROP TABLE Lol')
+
+# DELETE 일부 행만 삭제하기
+query = """
+    DELETE FROM Lol
+        WHERE (name='ward);
+"""
+
+# UPDATE = 기존에 있던 값들을 변경하고 싶을때
+query = """
+    UPDATE Lol SET champoin='Rulu' where champion='Ezreal';
+"""
+
+conn.execute(query)
+conn.commit()
+
+# READ
+cursor.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='Lol';")
+table_list = cursor.fetchall()
+
+for i in table_list:
+    for j in i:
+        print(j)
 
 # DB Close
 conn.close()
