@@ -5,51 +5,52 @@ ans = []
 for i in range(T):
     T1.append(list(map(int, input().split(" "))))
     T2.append(input())
-    ans.append("." * T1[i][0])
+    ans.append(["."] * T1[i][0])
 
-Gcur = -100005
-Hcur = -100005
+
+
 
 for k in range(T):
+    N = T1[k][0]
+    d = T1[k][1]
+    Hcur = -100005
     Gcur = -100005
-    for i in range(0, T1[k][0]):
-        d = T1[k][1]
+    for i in range(0, N):
         if T2[k][i] == 'G':
             if i - Gcur > d:
                 Gcur = i + d
-                if Gcur >= len(T2[k]):
-            
-                    Gcur = len(T2[k]) - 1
-                a = list(ans[k])
-                a[Gcur] = "G"
-                a = ''.join(a)
-                ans[k] = a
-
-    Hcur = -100005
-    for i in range(0, T1[k][0]):
-        d = T1[k][1]
-        if T2[k][i] == 'H':
+                if Gcur >= N:
+                    Gcur = T1[k][0]-1
+                    if ans[k][len(T2[k]) - 1] == ".":
+                        ans[k][len(T2[k]) - 1] = "G"
+                    else:
+                        ans[k][len(T2[k]) - 2] = "G"
+                else:
+                    if ans[k][Gcur] != ".":
+                        Gcur -= 1
+                        ans[k][Gcur] = "G"
+                    else:
+                        ans[k][Gcur] = "G"
+        elif T2[k][i] == 'H':
             if i - Hcur > d:
                 Hcur = i + d
-                if Hcur >= len(T2[k]):
-                    Hcur = len(T2[k]) -2
-                a = list(ans[k])
-                a[Hcur] = "H"
-                a = ''.join(a)
-                ans[k] = a
+                if Hcur >= N:
+                    Hcur = T1[k][0]-1
+                    
+                    if ans[k][len(T2[k]) - 1] == ".":
+                        ans[k][len(T2[k]) - 1] = "H"
+                    else:
+                        ans[k][len(T2[k]) - 2] = "H"
+                else:
+                    if ans[k][Hcur] != ".":
+                        Hcur -= 1
+                        ans[k][Hcur] = "H"
+                    else:
+                        ans[k][Hcur] = "H"        
 
-dot = []
-for i in ans:
-    count = 0
-    for j in i:
-        if j == '.':
-            count +=1
-    dot.append(count)
+ans2 = [''.join(ans[i]) for i in range(T)]
 
-ans2 = []
-for i in range(0, len(dot)):
-    ans2.append(T1[i][0] - dot[i])
 
 for i in range(0, T):
-    print(ans2[i])
-    print(ans[i])
+    print(T1[i][0] - ans2[i].count('.'))
+    print(ans2[i]) 
