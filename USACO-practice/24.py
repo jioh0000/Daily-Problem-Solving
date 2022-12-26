@@ -8,7 +8,7 @@ for _ in range(N):
     raa.append(raa[-1] + a)
 
 ans = 0
-print(raa)
+
 for i in range(1,N+1):
     for j in range(i,N+1):
         a = raa[j] - raa[i - 1] 
@@ -16,3 +16,6 @@ for i in range(1,N+1):
             ans = j-i+1
 
 print(ans)
+
+# 0 3 8 9 15 17 31
+# 0 3 1 2 1 3 3
