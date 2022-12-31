@@ -1,44 +1,45 @@
-input = list(map(int, input().split(" ")))
-ans = []
-remainX = 0
-remainY = 0
-# input[0] = row, input[1] = column, input[2] = start, input[3] = # of blocks, 나머지 = positions of blocks
+def mult():
+    for i in range(len(a)):
+        if a[i] == '*':
+            a[i] = a[i-1]
+            a[i-1] = '*'
+            si(i)
+            break
 
-arr = [0] * (input[0] * input[1])
-for i in range(input[3]):
-    arr[input[4+i] - 1] = 2
+def plusminus():
+    for i in range(len(a)):
+        if a[i] == '+':
+            a[i] = a[i-1]
+            a[i-1] = '+'
+            si(i)
+            break
+        elif a[i] == '-':
+            a[i] = a[i-1]
+            a[i-1] = '-'
+            si(i)
+            break
 
-currPos = input[2] - 1
-while True:
-    remainX = input[1] - 1 - (currPos%input[1])
-    remainY = input[0] - 1 - (currPos//input[1])
-    if remainX == 0: break
-    try:
-        if arr[currPos] + arr[currPos + 1] + arr[currPos + 2] == 0 and remainX >= 3:
-            currPos += 2
-            ans.append('A')
-    except IndexError:
-        pass
+def si(i):
+    tmp = ''.join(a[i-1 : i+2])
+    a.insert(i+2, tmp)
+    del a[i-1:i+2]
+    
 
-    remainX = input[1] - 1 - (currPos%input[1])
-    remainY = input[0] - 1 - (currPos//input[1])
-    if remainX == 0: break
-    try:
-        if arr[currPos + 1 + input[1]] + arr[currPos + 2 + input[1]] + arr[currPos + 1] == 0 and remainY >= 1:
-            currPos += (input[1] + 2)
-            ans.append('B')
-    except IndexError:
-        pass
-   
-    remainX = input[1] - 1 - (currPos%input[1])
-    remainY = input[0] - 1 - (currPos//input[1])
-    if remainX == 0: break
-    try:
-        if arr[currPos + 1] + arr[currPos + 2] + arr[currPos + input[1] + 2] + arr[currPos + input[1]*2 + 2] == 0 and remainY >= 2:
-            currPos += input[1]*2 + 2
-            ans.append('C')
-    except IndexError:
-        pass
-    print(ans, remainX, remainY, currPos)
 
-print(ans)
+
+
+for _ in range(5):
+    a = list(map(str, input().strip()))
+    operNum = (len(a)-1)//2
+    multNum = a.count('*')
+    pmNum = operNum - multNum
+
+    for _ in range(multNum):
+        mult()
+
+    print(pmNum)
+    for _ in range(pmNum):
+        print(a)
+        plusminus()
+
+    print(''.join(a))
