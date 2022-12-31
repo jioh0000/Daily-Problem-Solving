@@ -9,5 +9,5 @@ for _ in range(K):
     for i in range(a-1, b):
         arr[i] += 1
 
-sort(arr)
+arr.sort()
 print(arr[(N-1)/2])
