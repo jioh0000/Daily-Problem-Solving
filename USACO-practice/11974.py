@@ -11,13 +11,15 @@ for _ in range(N):
 ans = 0
 
 for i in range(7):
-    num = []
+    first = -1
+    last = -1
     for j in range(N + 1):
+        if pf_r[j] == i and first == -1:
+            first = j
         if pf_r[j] == i:
-            num.append(j)
-    if len(num) > 0:
-        if num[-1] - num[0] > ans:
-            ans = num[-1] - num[0]
+            last = j
+    if first != -1 and last - first > ans:
+            ans = last - first
 
 print(ans)
 
