@@ -21,11 +21,8 @@ arr.sort()
 cnt = N
 prefix_max2 = [arr[0].x2]
 for i in range(1, N):
-    if prefix_max2[-1] > arr[i].x2:
+    if prefix_max2[-1] >= arr[i].x2:
         cnt -= 1
     prefix_max2.append(max(prefix_max2[-1], arr[i].x2))
 
 print(cnt)
-
-
-
