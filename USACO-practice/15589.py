@@ -30,7 +30,7 @@ for i in arr:
         curY = i.y
 cnt += curY - curX
 
-brr = [0]
+brr = []
 pref_maxY = [-1]
 for i in range(N):
     # i th pair가 나머지들과 얼마나 겹쳐있는지.
@@ -41,7 +41,7 @@ for i in range(N):
     else:
         right = arr[i+1].x
     left = pref_maxY[i]
-    pref_maxY.append(max(arr[i].y, pref_maxY[i]))
+    pref_maxY.append(max(arr[i].y, pref_maxY[i])) # prefix max
 
     if right > arr[i].y:
         right = arr[i].y
@@ -54,4 +54,3 @@ for i in range(N):
 
 cnt -= min(brr)
 print(cnt)
-print(brr)
