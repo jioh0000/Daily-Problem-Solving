@@ -57,8 +57,3 @@ for i in range(N):
             ans = cnt + ps_crr[R]
 
 print(ans)
-
-
-# 7 6 ...
-# 10 25
-# 15 15
