@@ -6,37 +6,24 @@ for _ in range(N):
     arr.append(int(sys.stdin.readline()))
 arr.sort()
 
-p
+ans = 0
 
-index = 0
 num = []
+j = 0
 for i in range(N):
-    num[i].append(num[i - 1] - 1)
-    while index < N and arr[index] - arr[i] <= K:
-        num[i] = index - i + 1
-        index += 1
+    num.append(0)
+    while j < N and arr[j] <= arr[i] + K:
+        j += 1 
+    num[i] = j - i
+    # two pointer approach
 
-suffix_max = [] # suffix_max[i] : max(num[i],num[i + 1],...,num[N - 1])
-  
+suffix_max = [0]
+for i in range(N - 1, -1, -1):
+    suffix_max.insert(0, max(suffix_max[0], num[i]))
+
 ans = 0
 for i in range(N):
-    ans = num[i] + suffix_max[index[i]] 
+    if ans < num[i] + suffix_max[i + num[i]]:
+        ans = num[i] + suffix_max[i + num[i]]
 
-
-# num[i] : length of longest interval begins with i
-
-# suffix_max[i] : max(num[i],num[i + 1],...,num[N - 1])
-
-# ans : sum of two longest interval length, not overlaps each other
-
-'''
-8 4
-1 5
-2 5
-3 4
-4 3
-5 2
-6 1
-20 2
-21 2
-'''
+print(ans)
