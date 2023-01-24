@@ -6,20 +6,6 @@ for _ in range(N):
     arr.append(int(sys.stdin.readline()))
 arr.sort()
 
-minimum = 1e+20
-begin = arr[0]
-while begin + N - 1 <= arr[-1]:
-    end = begin + N - 1
-    num = 0
-    for a in arr:
-        if a < begin and end < a:
-            num += 1
-
-    if minimum > num:
-        minimum = num
-
-    begin += 1
-
 j = 0
 num = []
 for i in range(N):
